@@ -10,8 +10,6 @@ cd build
 cmake ..
 ```
 
-Set the GTEST_LIBRARY GTEST_MAIN_LIBRARY and GTEST_INCLUDE_DIR on the generated CMakeCache.txt file
-
 ## Git Bash on windows users
 
 Build Makefile with:
