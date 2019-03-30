@@ -5,7 +5,7 @@ Gate::Gate(int numberOfInputs, Output *output) {
   inputValues.assign(numberOfInputs, 0);
 }
 
-void Gate::setInput(int inputNumber, bool value) {
+void Gate::setInputValue(int inputNumber, bool value) {
   inputValues.at(inputNumber) = value;
   output->set(this->evaluateOutput());
 }

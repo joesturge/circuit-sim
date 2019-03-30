@@ -6,7 +6,8 @@
 class Gate;
 class Input {
 public:
-  Input(int inputNumber, Gate *gate);
+  Input();
+  void connect(int inputNumber, Gate *gate);
   void set(bool value);
 
 private:

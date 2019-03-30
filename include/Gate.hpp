@@ -8,7 +8,7 @@ class Output;
 class Gate {
 public:
   Gate(int numberOfInputs, Output *output);
-  void setInput(int input, bool value);
+  void setInputValue(int input, bool value);
 
   ~Gate();
 

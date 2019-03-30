@@ -7,12 +7,14 @@
 class Input;
 class Output {
 public:
-  Output(std::vector<Input *> *connections);
+  Output(std::vector<Input *> connections);
+  Output(Input *connection);
+  Output();
   void set(bool value);
   bool get();
 
 private:
-  std::vector<Input *> *connections;
+  std::vector<Input *> connections;
   bool value;
 };
 

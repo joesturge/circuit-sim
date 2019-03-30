@@ -7,7 +7,7 @@
 
 class NandGate : public Gate {
 public:
-  NandGate(Output *output);
+  NandGate(Input *a, Input *b, Output *output);
 
 private:
   bool evaluateOutput();
