@@ -1,12 +1,5 @@
 #include <Output.hpp>
 
-Output::Output(std::vector<Input *> connections) {
-  this->connections = connections;
-  this->value = false;
-}
-
-Output::Output(Input *connection) { this->connections.push_back(connection); }
-
 Output::Output() {}
 
 void Output::set(bool value) {
@@ -17,6 +10,10 @@ void Output::set(bool value) {
   for (unsigned i = 0; i < connections.size(); i++) {
     connections.at(i)->set(this->value);
   }
+}
+
+void Output::forward(Input *newConnection) {
+  this->connections.push_back(newConnection);
 }
 
 bool Output::get() { return this->value; }

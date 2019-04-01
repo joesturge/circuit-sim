@@ -1,9 +1,8 @@
 #include <Gate.hpp>
 
-Gate::Gate(int numberOfInputs, Output *output) {
-  this->output = output;
-  inputValues.assign(numberOfInputs, 0);
-}
+Gate::Gate(int numberOfInputs) { inputValues.assign(numberOfInputs, 0); }
+
+void Gate::setOutput(Output *output) { this->output = output; }
 
 void Gate::setInputValue(int inputNumber, bool value) {
   inputValues.at(inputNumber) = value;

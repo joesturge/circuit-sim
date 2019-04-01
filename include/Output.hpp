@@ -7,9 +7,8 @@
 class Input;
 class Output {
 public:
-  Output(std::vector<Input *> connections);
-  Output(Input *connection);
   Output();
+  void forward(Input *newConnection);
   void set(bool value);
   bool get();
 

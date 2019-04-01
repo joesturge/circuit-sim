@@ -1,48 +1,87 @@
-#include <Gate.hpp>
 #include <Input.hpp>
 #include <NandGate.hpp>
 #include <Output.hpp>
+#include <SrNandLatch.hpp>
 #include <iostream>
 #include <vector>
 
 int main() {
-  Input inputA;
-  Input inputB;
-  Input feedbackA;
-  Input feedbackB;
+  Input notA;
+  Input notB;
 
-  Output outputA = Output(&feedbackA);
-  Output outputB = Output(&feedbackB);
+  Input nandDataA;
+  Input nandDataB;
 
-  NandGate gateA = NandGate(&inputA, &feedbackB, &outputA);
-  NandGate gateB = NandGate(&inputB, &feedbackA, &outputB);
+  Input nandClkA;
+  Input nandClkB;
 
-  inputA.set(true);
-  inputB.set(true);
-  std::cout << outputA.get() << std::endl;
-  std::cout << outputB.get() << std::endl << std::endl;
-  inputA.set(false);
-  inputB.set(true);
-  std::cout << outputA.get() << std::endl;
-  std::cout << outputB.get() << std::endl << std::endl;
-  inputA.set(true);
-  inputB.set(true);
-  std::cout << outputA.get() << std::endl;
-  std::cout << outputB.get() << std::endl << std::endl;
-  inputA.set(false);
-  inputB.set(true);
-  std::cout << outputA.get() << std::endl;
-  std::cout << outputB.get() << std::endl << std::endl;
-  inputA.set(true);
-  inputB.set(true);
-  std::cout << outputA.get() << std::endl;
-  std::cout << outputB.get() << std::endl << std::endl;
-  inputA.set(true);
-  inputB.set(false);
-  std::cout << outputA.get() << std::endl;
-  std::cout << outputB.get() << std::endl << std::endl;
-  inputA.set(true);
-  inputB.set(true);
-  std::cout << outputA.get() << std::endl;
-  std::cout << outputB.get() << std::endl << std::endl;
+  Output D;
+  Output _D;
+  Output Clk;
+
+  Output nandClkOut;
+  Output nandDataOut;
+  Input _S;
+  Input _R;
+  Output Q;
+  Output _Q;
+
+  NandGate notGate;
+  NandGate nandData;
+  NandGate nandClk;
+
+  D.forward(&notA);
+  D.forward(&notB);
+  D.forward(&nandDataA);
+  Clk.forward(&nandClkB);
+  Clk.forward(&nandDataB);
+
+  notGate.setA(&notA);
+  notGate.setB(&notB);
+  notGate.setOutput(&_D);
+  _D.forward(&nandClkA);
+
+  nandClk.setA(&nandClkA);
+  nandClk.setB(&nandClkB);
+  nandClk.setOutput(&nandClkOut);
+  nandClkOut.forward(&_R);
+
+  nandData.setA(&nandDataA);
+  nandData.setB(&nandDataB);
+  nandData.setOutput(&nandDataOut);
+  nandDataOut.forward(&_S);
+
+  SrNandLatch latch = SrNandLatch(&_S, &_R, &Q, &_Q);
+
+  Clk.set(true);
+  D.set(true);
+  std::cout << Q.get() << std::endl;
+
+  Clk.set(true);
+  D.set(false);
+  std::cout << Q.get() << std::endl;
+
+  Clk.set(true);
+  D.set(true);
+  std::cout << Q.get() << std::endl;
+
+  Clk.set(false);
+  D.set(false);
+  std::cout << Q.get() << std::endl;
+
+  Clk.set(false);
+  D.set(true);
+  std::cout << Q.get() << std::endl;
+
+  Clk.set(false);
+  D.set(false);
+  std::cout << Q.get() << std::endl;
+
+  Clk.set(true);
+  D.set(true);
+  std::cout << Q.get() << std::endl;
+
+  Clk.set(true);
+  D.set(false);
+  std::cout << Q.get() << std::endl;
 }

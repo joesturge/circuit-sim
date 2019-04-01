@@ -1,13 +1,13 @@
 #ifndef NAND_GATE_H
 #define NAND_GATE_H
 
-#include <Gate.hpp>
-#include <NandGate.hpp>
+#include <Input.hpp>
 #include <Output.hpp>
+#include <TwoInputGate.hpp>
 
-class NandGate : public Gate {
+class NandGate : public TwoInputGate {
 public:
-  NandGate(Input *a, Input *b, Output *output);
+  NandGate();
 
 private:
   bool evaluateOutput();
