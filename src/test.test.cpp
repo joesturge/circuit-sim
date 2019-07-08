@@ -2,4 +2,15 @@
 
 #include "gtest/gtest.h"
 
-TEST(sample_test_case, sample_test) { EXPECT_EQ(1, 1); }
+#include <Inverter.hpp>
+#include <Wire.hpp>
+
+TEST(SimulatorTest, Invert) {
+
+  Wire in = Wire();
+  in.setSignal(true);
+  Wire out = Wire();
+  Inverter invert = Inverter(in, out);
+
+  EXPECT_FALSE(out.getSignal());
+}
