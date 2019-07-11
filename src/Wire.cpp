@@ -7,7 +7,7 @@ Wire::Wire() { this->signal = false; }
 void Wire::setSignal(bool signal) {
   this->signal = signal;
   std::for_each(changeListeners.begin(), changeListeners.end(),
-                [](Inverter *changeListener) { changeListener->propergate(); });
+                [](Inverter *changeListener) { changeListener->change(); });
 }
 
 bool Wire::getSignal() { return signal; }
