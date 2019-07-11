@@ -1,11 +1,16 @@
 #ifndef INVERTER_H
 #define INVERTER_H
 
-#include <Wire.hpp>
+class Wire;
 
 class Inverter {
 public:
-  Inverter(Wire, Wire);
+  Inverter(Wire *, Wire *);
+  void propergate();
+
+private:
+  Wire *in;
+  Wire *out;
 };
 
 #endif // INVERTER_H

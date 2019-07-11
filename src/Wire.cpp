@@ -1,5 +1,17 @@
+#include <Inverter.hpp>
 #include <Wire.hpp>
+#include <algorithm>
 
-void Wire::setSignal(bool signal) {}
+Wire::Wire() { this->signal = false; }
 
-bool Wire::getSignal() { return false; }
+void Wire::setSignal(bool signal) {
+  this->signal = signal;
+  std::for_each(changeListeners.begin(), changeListeners.end(),
+                [](Inverter *changeListener) { changeListener->propergate(); });
+}
+
+bool Wire::getSignal() { return signal; }
+
+void Wire::addChangeListener(Inverter *gate) {
+  this->changeListeners.push_back(gate);
+}

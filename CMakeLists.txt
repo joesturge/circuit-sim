@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 
 project(CircuitSimulator)
 
+set (CMAKE_CXX_STANDARD 11)
+
 if (MSVC)
   add_compile_options(/W4)
 else()
